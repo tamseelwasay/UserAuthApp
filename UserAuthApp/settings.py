@@ -131,6 +131,17 @@ AUTH_USER_MODEL = 'authapp.CustomUser'
 
 LOGIN_REDIRECT_URL = 'profile'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 LOGIN_URL = 'authapp:login'
+
+LOGOUT_REDIRECT_URL = 'login'
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
