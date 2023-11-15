@@ -31,7 +31,7 @@ def register(request):
             })
             user.email_user(subject, message)
 
-            return redirect('account_activation_sent')  # Redirect to a confirmation page
+            return redirect('authapp:account_activation_sent')  # Redirect to a confirmation page
     else:
         form = UserRegisterForm()
     return render(request, 'authapp/register.html', {'form': form})
