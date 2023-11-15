@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-la=9g9)_e5tptp_40_4!f*m)&4o42+r%tk+&=u^i999wtp4gt7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['user-auth-app-django.herokuapp.com']
 
 
 # Application definition
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'UserAuthApp.urls'
@@ -71,19 +72,26 @@ TEMPLATES = [
 WSGI_APPLICATION = 'UserAuthApp.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+import os
+import dj_database_url
+
+# Get the value of DATABASE_URL environment variable
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'userauthdb',  # Your database name
-        'USER': 'postgres',  # Your PostgreSQL username
-        'PASSWORD': 'Waniya11',  # Your PostgreSQL password
-        'HOST': 'localhost',  # Set to empty string for localhost
+        'NAME': 'userauthdb',  # Your local database name
+        'USER': 'postgres',  # Your local PostgreSQL username
+        'PASSWORD': 'Waniya11',  # Your local PostgreSQL password
+        'HOST': 'localhost',  # Set to localhost for local
         'PORT': '',  # Set to empty string for default
     }
 }
+
+# Override the default DATABASES config with the one from Heroku if DATABASE_URL is available
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 
 # Password validation
@@ -120,7 +128,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
