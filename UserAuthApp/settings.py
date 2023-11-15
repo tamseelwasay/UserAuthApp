@@ -29,7 +29,7 @@ SECRET_KEY = urllib.parse.unquote_plus(os.environ.get('SECRET_KEY', 'your_defaul
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['user-auth-app-django-2afba53324e9.herokuapp.com/']
+ALLOWED_HOSTS = ['user-auth-app-django-2afba53324e9.herokuapp.com']
 
 
 # Application definition
