@@ -13,7 +13,7 @@ from django.contrib.auth.views import (
 )
 
 
-
+app_name = 'authapp'
 urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='authapp/login.html'), name='login'),

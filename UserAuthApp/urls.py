@@ -21,7 +21,7 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('authapp/', include('authapp.urls')),
+    path('authapp/', include('authapp.urls', namespace='authapp')),
     path('accounts/', include('authapp.urls')),
     path('', RedirectView.as_view(url=reverse_lazy('authapp:login'), permanent=False)),
 ]
