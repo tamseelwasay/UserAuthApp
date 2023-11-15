@@ -75,8 +75,6 @@ WSGI_APPLICATION = 'UserAuthApp.wsgi.application'
 import os
 import dj_database_url
 
-# Get the value of DATABASE_URL environment variable
-DATABASE_URL = os.environ.get('DATABASE_URL')
 
 DATABASES = {
     'default': {
@@ -89,9 +87,9 @@ DATABASES = {
     }
 }
 
-# Override the default DATABASES config with the one from Heroku if DATABASE_URL is available
+DATABASE_URL = os.environ.get('DATABASE_URL')
 if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+    DATABASES['default'] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, ssl_require=True)
 
 
 # Password validation
