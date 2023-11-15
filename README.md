@@ -10,7 +10,7 @@ This project is a user authentication system built using Django. It allows users
 
 ## How to Use
 
-1. Visit [User Authentication App](https://user-auth-app-django-2afba53324e9.herokuapp.com/).
+1. Visit [User Authentication App](https://user-auth-app-django-2afba53324e9.herokuapp.com/). - THERE IS CURRENTLY A DECEPTIVE SITE WARNING ON CHROME THAT I AM TRYING TO ADDRESS
 2. Register for a new account.
 3. Activate your account through the email link.
 4. Log in with your new credentials.
