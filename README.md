@@ -1,6 +1,7 @@
 # User Authentication System
 
 This project is a user authentication system built using Django. It allows users to register, log in, and manage their profiles.
+(DISCLAIMER: THIS PROJECT IS NO LONGER DEPLOYED ON HEROKU, HOWEVER FEEL FREE TO TRY OUT LOCALLY BY CLONING THE REPOSITORY)
 
 ## Features
 
